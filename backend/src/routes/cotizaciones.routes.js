@@ -1,12 +1,12 @@
-import { Router } from "express";
-import { methodsHTTP as categoriaCotrollers} from "../controllers/cotizaciones.controller.js";
+const {Router} = require('express');
+const {getCotizaciones, getCotizacionesId, addCotizacion, deleteCotizacion, updateCotizacion} = require('../controllers/cotizaciones.controller.js');
 
 const routerCotizaciones = Router();
 
-routerCotizaciones.get("/", categoriaCotrollers.getCotizaciones);
-routerCotizaciones.get("/:id", categoriaCotrollers.getCotizacionesId);
-routerCotizaciones.post("/", categoriaCotrollers.addCotizacion);
-routerCotizaciones.delete("/:id", categoriaCotrollers.deleteCotizacion);
-routerCotizaciones.put("/:id", categoriaCotrollers.updateCotizacion);
+routerCotizaciones.get("/", getCotizaciones);
+routerCotizaciones.get("/:id", getCotizacionesId);
+routerCotizaciones.post("/", addCotizacion);
+routerCotizaciones.delete("/:id", deleteCotizacion);
+routerCotizaciones.put("/:id", updateCotizacion);
 
-export default routerCotizaciones ;
+module.exports = routerCotizaciones ;

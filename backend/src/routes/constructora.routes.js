@@ -1,12 +1,12 @@
-import { Router } from "express";
-import { methodsHTTP as categoriaCotrollers} from "../controllers/constructora.controller.js";
+const {Router} = require('express');
+const {getConstructora, getConstructoraId, addConstructora, deleteConstructora, updateConstructora} = require('../controllers/constructora.controller.js');
 
 const routerConstructora = Router();
 
-routerConstructora.get("/", categoriaCotrollers.getConstructora);
-routerConstructora.get("/:id", categoriaCotrollers.getConstructoraId);
-routerConstructora.post("/", categoriaCotrollers.addConstructora);
-routerConstructora.delete("/:id", categoriaCotrollers.deleteConstructora);
-routerConstructora.put("/:id", categoriaCotrollers.updateConstructora);
+routerConstructora.get("/", getConstructora);
+routerConstructora.get("/:id", getConstructoraId);
+routerConstructora.post("/", addConstructora);
+routerConstructora.delete("/:id", deleteConstructora);
+routerConstructora.put("/:id", updateConstructora);
 
-export default routerConstructora ;
+module.exports = routerConstructora ;

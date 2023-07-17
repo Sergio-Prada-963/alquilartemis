@@ -1,6 +1,3 @@
-import app from "./app.js";
-const main = ()=>{
-    app.listen(app.get("port"));
-    console.log(`SI funshion ${app.get("port")}`);
-}
-main();
+const Server = require('./app.js');
+const server = new Server();
+server.listen();

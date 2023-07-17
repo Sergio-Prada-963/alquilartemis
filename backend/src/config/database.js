@@ -1,5 +1,5 @@
-import mysql from "promise-mysql";
-import config from "./../config.js";
+const mysql = require('promise-mysql');
+const config = require('./config.js');
 
 const connection = mysql.createConnection({
     host: config.host,
@@ -12,4 +12,4 @@ const getConnection = ()=>{
     return connection;
 }
 
-export default getConnection;
+module.exports =  getConnection;

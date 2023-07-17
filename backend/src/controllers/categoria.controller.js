@@ -1,4 +1,4 @@
-import getConnection from "./../db/database.js"
+const getConnection = require('../config/database.js')
 
 const getCategoria = async (req, res) =>{
     try {
@@ -62,10 +62,4 @@ const updateCategoria = async (req,res)=>{
     }
 }
 
-export const methodsHTTP = {
-    getCategoria,
-    addCategoria,
-    getCategoriaId,
-    deleteCategoria,
-    updateCategoria
-}
+module.exports = { getCategoria, addCategoria, getCategoriaId, deleteCategoria, updateCategoria}

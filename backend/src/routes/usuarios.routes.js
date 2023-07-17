@@ -1,11 +1,11 @@
-import { Router } from "express";
-import { methodsHTTP as usuarioCotrollers} from "../controllers/usuarios.controller.js";
+const {Router} = require('express');
+const {getUsuarios, addUsuario, deleteUsuario, updateUsuario} = require('../controllers/usuarios.controller.js');
 
 const routerUsuarios = Router();
 
-routerUsuarios.get("/", usuarioCotrollers.getUsuarios);
-routerUsuarios.post("/", usuarioCotrollers.addUsuario);
-routerUsuarios.delete("/:id", usuarioCotrollers.deleteUsuario);
-routerUsuarios.put("/:id", usuarioCotrollers.updateUsuario);
+routerUsuarios.get("/", getUsuarios);
+routerUsuarios.post("/", addUsuario);
+routerUsuarios.delete("/:id", deleteUsuario);
+routerUsuarios.put("/:id", updateUsuario);
 
-export default routerUsuarios;
+module.exports = routerUsuarios;

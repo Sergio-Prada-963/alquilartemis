@@ -1,4 +1,4 @@
-import getConnection from "../db/database.js"
+const getConnection = require('../config/database.js')
 
 const getCxP = async (req, res) =>{
     const connection = await getConnection();
@@ -57,7 +57,7 @@ const updateCxP = async (req,res)=>{
     }
 }
 
-export const methodsHTTP = {
+module.exports = {
     getCxP,
     getCxPId,
     addCxP,

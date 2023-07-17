@@ -1,4 +1,4 @@
-import getConnection from "../db/database.js"
+const getConnection = require('../config/database.js')
 
 const getProductos = async (req, res) =>{
     const connection = await getConnection();
@@ -57,7 +57,7 @@ const updateProducto = async (req,res)=>{
     }
 }
 
-export const methodsHTTP = {
+module.exports = {
     getProductos,
     getProductosId,
     addProducto,

@@ -1,27 +1,42 @@
-import express from "express";
-import routerCategoria from "./routes/categorias.routes.js";
-import routerContructora from "./routes/constructora.routes.js"
-import routerCotizaciones from "./routes/cotizaciones.routes.js"
-import routerEmpleados from "./routes/empleados.routes.js"
-import routerProductos from "./routes/productos.routes.js"
-import routerCotxPro from "./routes/CxP.routes.js";
-import routerUsuarios from "./routes/usuarios.routes.js";
-import cors from "cors"
+const express = require('express');
+const getConnection = require('./config/database.js');
+const cors = require('cors');
+class Server {
+    constructor(){
+        this.app = express();
+        this.app.set("port",3309)
+        this.categoriasPath = "/api/categorias";
+        this.constructoraPath = "/api/constructora";
+        this.cotizacionesPath = "/api/cotizaciones";
+        this.empleadosPath = "/api/empleados";
+        this.productosPath = "/api/productos";
+        this.CxPPath = "/apiCxP/";
+        this.usuariosPath = "/api/usuarios";
+        this.middlewares();
+        this.conexion();
+        this.routes();
+    }
+    middlewares(){
+        this.app.use(cors());
+        this.app.use(express.json());
+    }
+    conexion(){
+        getConnection();
+    }
+    routes(){
+        this.app.use(this.categoriasPath, require('./routes/categorias.routes.js'));
+        this.app.use(this.constructoraPath, require('./routes/constructora.routes.js'));
+        this.app.use(this.cotizacionesPath, require('./routes/cotizaciones.routes.js'));
+        this.app.use(this.empleadosPath, require('./routes/empleados.routes.js'));
+        this.app.use(this.productosPath, require('./routes/productos.routes.js'));
+        this.app.use(this.CxPPath, require('./routes/CxP.routes.js'));
+        this.app.use(this.usuariosPath, require('./routes/usuarios.routes.js'));
+    }
+    listen(){
+        this.app.listen(this.app.get("port"), ()=>{
+            console.log(`Server funcionando en puerto ${this.app.get("port")}`);
+        });
+    }
+}
 
-const app = express();
-app.set("port",3309);
-
-//middleware F- nativa
-app.use(express.json());
-
-app.use(cors())
-
-app.use("/api/categorias",routerCategoria)
-app.use("/api/constructora",routerContructora)
-app.use("/api/empleados",routerEmpleados)
-app.use("/api/productos",routerProductos)
-app.use("/api/cotizaciones",routerCotizaciones)
-app.use("/api/CotxPro",routerCotxPro)
-app.use("/api/usuarios",routerUsuarios)
-
-export default app;
+module.exports = Server
